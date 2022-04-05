@@ -24,16 +24,6 @@ import java.util.ArrayList;
 
 public class WalletFragment extends Fragment {
 
-    FragmentWalletBinding binding;
-    FirebaseFirestore database;
-    User user;
-
-    ArrayList<Gift> giftArrayList;
-    GiftAdapter giftAdapter;
-
-    public static String EMAIL = "";
-    long coins = 0;
-
     public WalletFragment() {
     }
 
@@ -45,43 +35,6 @@ public class WalletFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentWalletBinding.inflate(inflater, container, false);
-        database = FirebaseFirestore.getInstance();
-
-        database.collection("users")
-                .document(FirebaseAuth.getInstance().getUid())
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        user = documentSnapshot.toObject(User.class);
-                        EMAIL = user.getEmail();
-                        coins = user.getCoins();
-                        binding.currentCoints.setText(String.valueOf(coins));
-
-                    }
-                });
-
-        giftArrayList = new ArrayList<>();
-
-        database.collection("Gifts")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for(DocumentSnapshot snapshot : queryDocumentSnapshots){
-                            Gift gift = snapshot.toObject(Gift.class);
-                            giftArrayList.add(gift);
-                        }
-                        giftAdapter.notifyDataSetChanged();
-
-                    }
-                });
-
-        giftAdapter = new GiftAdapter(getContext(), giftArrayList, coins);
-        binding.recyclerviewGift.setAdapter(giftAdapter);
-        binding.recyclerviewGift.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        return binding.getRoot();
+        return inflater.inflate(R.layout.fragment_wallet, container, false);
     }
 }

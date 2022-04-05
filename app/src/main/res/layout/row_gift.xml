@@ -2,52 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:layout_weight="4">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/image_gift"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_trophy"/>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_weight="2"
-        android:layout_marginStart="10dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/name_gift_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Iphone 13 pro max"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"/>
-        <TextView
-            android:id="@+id/price_gift_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/coins"
-            android:text="30000"
-            android:drawablePadding="10dp"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="10dp"/>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/select_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Select"
-        android:layout_weight="1"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/darkGreen" />
 
 </LinearLayout>

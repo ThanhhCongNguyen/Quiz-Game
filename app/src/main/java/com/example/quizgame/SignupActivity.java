@@ -20,97 +20,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignupActivity extends AppCompatActivity {
 
-    ActivitySignupBinding binding;
-    FirebaseAuth auth;
-    ProgressDialog dialog;
-
-    String email, pass, name;
-    String emailpattern  = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
-    FirebaseFirestore database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySignupBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        auth = FirebaseAuth.getInstance();
-        database = FirebaseFirestore.getInstance();
-
-        dialog = new ProgressDialog(this);
-        dialog.setMessage("We're creating an new account...");
-
-
-
-        binding.submitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                email = binding.emailBox.getText().toString();
-                pass = binding.passwordBox.getText().toString();
-                name = binding.nameBox.getText().toString();
-
-
-
-                final User user = new User(name, email, pass);
-
-                if (isValid()) {
-                dialog.show();
-
-                auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-
-                            String uid = task.getResult().getUser().getUid();
-
-                            database
-                                    .collection("users")
-                                    .document(uid)
-                                    .set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        dialog.dismiss();
-                                        startActivity(new Intent(SignupActivity.this, MainActivity.class));
-                                        finish();
-                                    } else {
-                                        Toast.makeText(SignupActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                                    }
-
-                                }
-                            });
-                        } else {
-                            dialog.dismiss();
-                            Toast.makeText(SignupActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-
-            }
-            }
-        });
-
-        binding.loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-    }
-
-   public boolean isValid(){
-        boolean isValid = false;
-        if(email.matches("") || pass.matches("") || name.matches("")){
-            Toast.makeText(getApplicationContext(),"Email or Password is not null ", Toast.LENGTH_LONG).show();
-        }else {
-            isValid = true;
-        }
-
-        return isValid;
+        setContentView(R.layout.activity_signup);
    }
 
 

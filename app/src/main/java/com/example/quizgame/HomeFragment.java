@@ -78,7 +78,6 @@ public class HomeFragment extends Fragment {
         binding.spinwheel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), Test.class));
             }
         });
 

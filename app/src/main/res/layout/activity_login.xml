@@ -4,112 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".LoginActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="250dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/quizmelogo" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
+    <Button
+        android:id="@+id/sign_in_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:cardCornerRadius="20dp"
+        android:text="Sign In"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="15dp">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="Login with account"
-                android:textColor="@color/colorPurple"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="150dp"
-                android:layout_height="5dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/background" />
-
-            <EditText
-                android:id="@+id/emailBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/textbox"
-                android:drawableLeft="@drawable/email"
-                android:drawablePadding="15dp"
-                android:drawableTint="@color/colorPurple"
-                android:ems="10"
-                android:hint="Email Address"
-                android:inputType="textEmailAddress"
-                android:padding="15dp" />
-
-            <EditText
-                android:id="@+id/passwordBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/textbox"
-                android:drawableLeft="@drawable/password"
-                android:drawablePadding="15dp"
-                android:drawableTint="@color/colorPurple"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="15dp" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:gravity="end"
-                android:textSize="14sp"
-                android:layout_marginBottom="5dp"
-                android:text="Forgot your password?" />
-
-            <Button
-                android:id="@+id/loginBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/login_btn"
-                android:text="Login"
-                app:backgroundTint="@null" />
-
-            <Button
-                android:id="@+id/submitBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/submit_btn"
-                android:text="Create an account"
-                app:backgroundTint="@null" />
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

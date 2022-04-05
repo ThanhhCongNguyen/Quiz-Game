@@ -21,9 +21,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 public class ResultActivity extends AppCompatActivity {
-    ActivityResultBinding binding;
-    int POINTS = 10;
 
+    ActivityResultBinding binding;
+    final public int POINTS = 10;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +37,6 @@ public class ResultActivity extends AppCompatActivity {
         String categoryName = getIntent().getStringExtra("categoryName");
 
         long points = correctAnswers * POINTS;
-//        LocalDateTime dateTime = null;
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-//            dateTime = LocalDateTime.now();
-//        }
-//        DateTimeFormatter myFormatObj = null;
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-//            myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-//        }
-//
-//        String formattedDate = null;
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-//            formattedDate = dateTime.format(myFormatObj);
-//        }
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();

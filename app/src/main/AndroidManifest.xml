@@ -13,9 +13,6 @@
             android:name=".HistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".Test"
-            android:exported="false" />
-        <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
@@ -24,12 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SpinWheelActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SpinnerActivity"
-            android:exported="false" />
         <activity
             android:name=".ResultActivity"
             android:exported="false" />

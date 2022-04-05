@@ -34,12 +34,6 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         binding = FragmentProfileBinding.inflate(inflater, container, false);
-        binding.historyDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), HistoryActivity.class));
-            }
-        });
         return binding.getRoot();
     }
 }
