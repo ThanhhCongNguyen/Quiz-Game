@@ -24,15 +24,7 @@ import java.util.ArrayList;
 
 public class WalletFragment extends Fragment {
 
-    FragmentWalletBinding binding;
-    FirebaseFirestore database;
-    User user;
 
-    ArrayList<Gift> giftArrayList;
-    GiftAdapter giftAdapter;
-
-    public static String EMAIL = "";
-    long coins = 0;
 
     public WalletFragment() {
     }
