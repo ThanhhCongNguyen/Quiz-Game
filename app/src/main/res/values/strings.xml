@@ -6,4 +6,7 @@
     <string name="bio">
         Hi, my name is Aleks.
     </string>
+    <string name="current_coints">Current Coints</string>
+    <string name="exchange_them_for_luxury_gifts">Exchange them for luxury gifts</string>
+    <string name="locked">Locked</string>
 </resources>
