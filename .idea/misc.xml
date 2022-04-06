@@ -70,7 +70,8 @@
         <entry key="..\:/Android Tutorial/CodelabsAndroid/QuizGame/app/src/main/res/layout/row_lslb.xml" value="0.22" />
         <entry key="..\:/Android Tutorial/CodelabsAndroid/QuizGame/app/src/main/res/menu/home_menu.xml" value="0.1" />
         <entry key="..\:/Android Tutorial/CodelabsAndroid/QuizGame/app/src/main/res/menu/menu.xml" value="0.1" />
-
+        <entry key="..\:/Quizgame/app/src/main/res/drawable/background_button.xml" value="0.116" />
+        <entry key="..\:/Quizgame/app/src/main/res/layout/fragment_profile.xml" value="0.18" />
       </map>
     </option>
   </component>
