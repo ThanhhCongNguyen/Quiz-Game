@@ -24,6 +24,8 @@ import java.util.ArrayList;
 
 public class WalletFragment extends Fragment {
 
+    public static String EMAIL = "";
+
     public WalletFragment() {
     }
 
