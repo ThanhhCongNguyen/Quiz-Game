@@ -24,13 +24,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class WalletFragment extends Fragment {
-    
-    FragmentWalletBinding binding;
-    FirebaseFirestore database;
-    ArrayList<Gift> giftArrayList;
-    User user;
-    long coins = 0;
-    GiftAdapter giftAdapter;
 
     FragmentWalletBinding binding;
     FirebaseFirestore database;
