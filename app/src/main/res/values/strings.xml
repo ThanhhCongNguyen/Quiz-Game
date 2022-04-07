@@ -10,4 +10,8 @@
     <string name="exchange_them_for_luxury_gifts">Exchange them for luxury gifts</string>
     <string name="locked">Locked</string>
     <string name="select">Select</string>
+    <string name="purchased">Purchased</string>
+    <string name="purchase">Purchase</string>
+    <string name="unlocked">Unlocked</string>
+    <string name="open">Open</string>
 </resources>
