@@ -1,6 +1,7 @@
 package com.example.quizgame;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -40,12 +42,13 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
     FragmentWalletBinding binding;
     FirebaseFirestore database;
     private ArrayList<String> list = new ArrayList<>();
+    UpdateCurrentCoins updateCurrentCoins;
 
 
-    public GiftAdapter(Context context, ArrayList<Gift> giftArrayList, long coins) {
+    public GiftAdapter(Context context, ArrayList<Gift> giftArrayList, UpdateCurrentCoins updateCurrentCoins) {
         this.context = context;
         this.giftArrayList = giftArrayList;
-        this.coins = coins;
+        this.updateCurrentCoins = updateCurrentCoins;
     }
 
     @NonNull
@@ -79,10 +82,15 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
                             if (document.exists()) {
                                 list = (ArrayList<String>) document.getData().get("gifts");
                                 Log.d("TAG", "DocumentSnapshot data: " + list);
+                                Log.d("TAG", "Gift data: " + gift.getGiftName());
                                 if (list.contains(gift.getGiftName())) {
 
                                     holder.selectText.setText(R.string.locked);
                                     holder.selectText.setEnabled(false);
+                                }else {
+
+                                    holder.selectText.setText(R.string.select);
+                                    holder.selectText.setEnabled(true);
                                 }
                             } else {
                                 Log.d("TAG", "No such document");
@@ -97,44 +105,57 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
         holder.selectText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("TAG", String.valueOf(coins));
-                Log.d("TAG", String.valueOf(gift.getGiftPrice()));
+//                Log.d("TAG", String.valueOf(coins));
+//                Log.d("TAG", String.valueOf(gift.getGiftPrice()));
                 new AlertDialog.Builder(context)
                         .setTitle("Đổi quà")
                         .setMessage("Bạn có muốn đổi quà này không?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                if(coins >= gift.getGiftPrice()){
-                                    Map<String, Object> map = new HashMap<>();
-                                    map.put("coins", coins - gift.getGiftPrice());
-                                    map.put("gifts", FieldValue.arrayUnion(gift.getGiftName()));
+                                database.collection("users")
+                                        .document(FirebaseAuth.getInstance().getUid())
+                                        .get()
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                User user = documentSnapshot.toObject(User.class);
+                                                coins = user.getCoins();
 
-                                    database.collection("users")
-                                            .document(FirebaseAuth.getInstance().getUid())
-                                            .update(map)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    Log.d("TAG", "DocumentSnapshot successfully updated!");
-                                                    // Thong bao thanh cong
-                                                    Toast.makeText(context, "Successfully", Toast.LENGTH_LONG).show();
-//                                                    binding.currentCoints.setText(String.valueOf(coins - gift.getGiftPrice()));
+                                                Log.d("TAG", String.valueOf(coins));
+                                                if(coins >= gift.getGiftPrice()){
+                                                    Map<String, Object> map = new HashMap<>();
+                                                    map.put("coins", coins - gift.getGiftPrice());
+                                                    map.put("gifts", FieldValue.arrayUnion(gift.getGiftName()));
 
-                                                    holder.selectText.setText(R.string.locked);
-                                                    holder.selectText.setEnabled(false);
+                                                    database.collection("users")
+                                                            .document(FirebaseAuth.getInstance().getUid())
+                                                            .update(map)
+                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void aVoid) {
+                                                                    Log.d("TAG", "DocumentSnapshot successfully updated!");
+
+                                                                    // Thong bao thanh cong
+                                                                    Toast.makeText(context, "Successfully", Toast.LENGTH_LONG).show();
+                                                                    holder.selectText.setText(R.string.locked);
+                                                                    holder.selectText.setEnabled(false);
+                                                                    updateCurrentCoins.updateCoins(coins - gift.getGiftPrice());
+
+                                                                }
+                                                            })
+                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    Log.w("TAG", "Error updating document", e);
+                                                                }
+                                                            });
+
+                                                }else {
+                                                    Toast.makeText(context, "Fail", Toast.LENGTH_LONG).show();
                                                 }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Log.w("TAG", "Error updating document", e);
-                                                }
-                                            });
-
-                                }else {
-                                    Toast.makeText(context, "Fail", Toast.LENGTH_LONG).show();
-                                }
+                                            }
+                                        });
                             }
                         })
                         .setNegativeButton("No", null)

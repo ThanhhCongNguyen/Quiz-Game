@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="@+id/view7" />
 
     <TextView
-        android:id="@+id/currentCoints"
+        android:id="@+id/currentCoins"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

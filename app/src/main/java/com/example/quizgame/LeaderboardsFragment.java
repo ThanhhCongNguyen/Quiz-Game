@@ -1,5 +1,4 @@
 package com.example.quizgame;
-import static com.example.quizgame.WalletFragment.EMAIL;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 
@@ -43,7 +42,7 @@ public class LeaderboardsFragment extends Fragment {
         binding = FragmentLeaderboardsBinding.inflate(inflater, container, false);
 
         ArrayList<User> users = new ArrayList<>();
-        LeaderBoardsAdapter leaderBoardsAdapter = new LeaderBoardsAdapter(getContext(),users,EMAIL);
+        LeaderBoardsAdapter leaderBoardsAdapter = new LeaderBoardsAdapter(getContext(),users);
 
         binding.rycLeaderboard.setAdapter(leaderBoardsAdapter);
         binding.rycLeaderboard.setLayoutManager(new LinearLayoutManager(getContext()));

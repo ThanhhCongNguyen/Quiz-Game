@@ -27,10 +27,9 @@ public class LeaderBoardsAdapter extends RecyclerView.Adapter<LeaderBoardsAdapte
     String email;
 
 
-    public LeaderBoardsAdapter(Context context, ArrayList<User> users, String email) {
+    public LeaderBoardsAdapter(Context context, ArrayList<User> users) {
         this.context = context;
         this.users = users;
-        this.email = email;
     }
 
     @NonNull
@@ -48,9 +47,9 @@ public class LeaderBoardsAdapter extends RecyclerView.Adapter<LeaderBoardsAdapte
         holder.binding.name.setText(user.getName());
         holder.binding.coins.setText(String.valueOf(user.getCoins()));
 
-        if(user.getEmail().equals(email)){
-            holder.binding.userPlace.setVisibility(View.VISIBLE);
-        }
+//        if(user.getEmail().equals(email)){
+//            holder.binding.userPlace.setVisibility(View.VISIBLE);
+//        }
 
     }
 
