@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class WalletFragment extends Fragment {
+
+    FragmentWalletBinding binding;
+    FirebaseFirestore database;
+    ArrayList<Gift> giftArrayList;
+    User user;
+    //long coins = 0;
+    GiftAdapter giftAdapter;
+
 
 
 
@@ -47,13 +56,19 @@ public class WalletFragment extends Fragment {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         user = documentSnapshot.toObject(User.class);
-                        EMAIL = user.getEmail();
-                        coins = user.getCoins();
-                        binding.currentCoints.setText(String.valueOf(coins));
+//                        EMAIL = user.getEmail();
+                        long coins = user.getCoins();
+                        binding.currentCoins.setText(String.valueOf(coins));
 
 
                         giftArrayList = new ArrayList<>();
-                        giftAdapter = new GiftAdapter(getContext(), giftArrayList, coins);
+                        giftAdapter = new GiftAdapter(getContext(), giftArrayList, new UpdateCurrentCoins() {
+                            @Override
+                            public void updateCoins(long coins) {
+                                binding.currentCoins.setText(String.valueOf(coins));
+
+                            }
+                        });
                         binding.recyclerviewGift.setAdapter(giftAdapter);
                         binding.recyclerviewGift.setLayoutManager(new LinearLayoutManager(getContext()));
                     }
