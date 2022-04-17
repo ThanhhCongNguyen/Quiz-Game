@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
@@ -85,11 +89,13 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
                                 Log.d("TAG", "Gift data: " + gift.getGiftName());
                                 if (list.contains(gift.getGiftName())) {
 
-                                    holder.selectText.setText(R.string.locked);
-                                    holder.selectText.setEnabled(false);
+//                                    holder.selectText.setText(R.string.unlocked);
+//                                    holder.selectText.setEnabled(false);
+                                    holder.selectText.setVisibility(View.GONE);
+                                    holder.openText.setVisibility(View.VISIBLE);
                                 }else {
 
-                                    holder.selectText.setText(R.string.select);
+                                    holder.selectText.setText(R.string.purchase);
                                     holder.selectText.setEnabled(true);
                                 }
                             } else {
@@ -101,7 +107,7 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
                     }
                 });
 
-
+//        Set chuc nang unlock gift
         holder.selectText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,6 +168,33 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
                         .show();
             }
         });
+
+        holder.openText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Log.d("TAG", gift.getGiftName());
+                database.collection("Gifts")
+                        .whereEqualTo("giftName", gift.getGiftName())
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        intent.setData(Uri.parse((String) document.getData().get("link")));
+                                        context.startActivity(intent);
+                                        Log.d("TAG", (String) document.getData().get("link"));
+                                    }
+                                } else {
+                                    Log.d("TAG", "Error getting documents: ", task.getException());
+                                    Toast.makeText(context, "Error getting link", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+//
+            }
+        });
     }
 
     @Override
@@ -170,7 +203,7 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
     }
 
     class GiftViewHolder extends RecyclerView.ViewHolder{
-        TextView nameGiftText, priceGiftText, selectText;
+        TextView nameGiftText, priceGiftText, selectText, openText;
         ImageView imageGift;
         public GiftViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -178,6 +211,7 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
             nameGiftText = itemView.findViewById(R.id.name_gift_text);
             priceGiftText = itemView.findViewById(R.id.price_gift_text);
             selectText = itemView.findViewById(R.id.select_text);
+            openText = itemView.findViewById(R.id.open_text);
             imageGift = itemView.findViewById(R.id.image_gift);
 
         }
