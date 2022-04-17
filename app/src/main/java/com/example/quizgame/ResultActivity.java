@@ -18,6 +18,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class ResultActivity extends AppCompatActivity {
@@ -63,16 +65,19 @@ public class ResultActivity extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                Map<String, Object> map = new HashMap<>();
+                                map.put("coins", FieldValue.increment(points));
+                                map.put("histories", FieldValue.arrayUnion(history));
                                 FirebaseFirestore database = FirebaseFirestore.getInstance();
                                 database.collection("users")
                                         .document(FirebaseAuth.getInstance().getUid())
-                                        .update("coins", FieldValue.increment(points));
+                                        .update(map);
 
-                                database.collection("users")
-                                        .document(FirebaseAuth.getInstance().getUid())
-                                        .collection("History")
-                                        .document(UUID.randomUUID().toString())
-                                        .set(history);
+//                                database.collection("users")
+//                                        .document(FirebaseAuth.getInstance().getUid())
+//                                        .collection("History")
+//                                        .document(UUID.randomUUID().toString())
+//                                        .set(history);
 
                                // .set(user);
                                 Toast.makeText(ResultActivity.this, "Save Successful", Toast.LENGTH_LONG).show();

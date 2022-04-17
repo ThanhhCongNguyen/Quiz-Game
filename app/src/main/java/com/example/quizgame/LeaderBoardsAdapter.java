@@ -25,11 +25,13 @@ public class LeaderBoardsAdapter extends RecyclerView.Adapter<LeaderBoardsAdapte
     ArrayList<User> users;
     // ProgressDialog progressDialog;
     String email;
+    UpdatePositionLeaderBoard updatePositionLeaderBoard;
 
 
-    public LeaderBoardsAdapter(Context context, ArrayList<User> users) {
+    public LeaderBoardsAdapter(Context context, ArrayList<User> users, UpdatePositionLeaderBoard updatePositionLeaderBoard) {
         this.context = context;
         this.users = users;
+        this.updatePositionLeaderBoard = updatePositionLeaderBoard;
     }
 
     @NonNull

@@ -1,7 +1,7 @@
 package com.example.quizgame;
 
 public class Gift {
-    private String giftImage, giftName;
+    private String giftImage, giftName, link;
     private int giftPrice;
 
     public Gift() {
@@ -36,5 +36,23 @@ public class Gift {
 
     public void setGiftPrice(int giftPrice) {
         this.giftPrice = giftPrice;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    @Override
+    public String toString() {
+        return "Gift{" +
+                "giftImage='" + giftImage + '\'' +
+                ", giftName='" + giftName + '\'' +
+                ", link='" + link + '\'' +
+                ", giftPrice=" + giftPrice +
+                '}';
     }
 }

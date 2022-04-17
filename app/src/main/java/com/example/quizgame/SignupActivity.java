@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+
 public class SignupActivity extends AppCompatActivity {
 
     ActivitySignupBinding binding;
@@ -27,6 +30,10 @@ public class SignupActivity extends AppCompatActivity {
 
     String email, pass, name;
     String emailpattern  = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+    ArrayList<History> histories;
+    ArrayList<Gift> gifts;
+    long coins;
 
     FirebaseFirestore database;
 
@@ -52,9 +59,12 @@ public class SignupActivity extends AppCompatActivity {
                 pass = binding.passwordBox.getText().toString();
                 name = binding.nameBox.getText().toString();
 
+                histories = new ArrayList<>();
+                gifts = new ArrayList<>();
 
 
-                final User user = new User(name, email, pass);
+
+                final User user = new User(name, email, pass, coins, gifts, histories);
 
                 if (isValid()) {
                     dialog.show();

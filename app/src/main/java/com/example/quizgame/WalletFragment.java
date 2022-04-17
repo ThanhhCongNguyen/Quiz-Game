@@ -24,13 +24,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class WalletFragment extends Fragment {
-    
-    FragmentWalletBinding binding;
-    FirebaseFirestore database;
-    ArrayList<Gift> giftArrayList;
-    User user;
-    long coins = 0;
-    GiftAdapter giftAdapter;
 
     FragmentWalletBinding binding;
     FirebaseFirestore database;
@@ -69,14 +62,17 @@ public class WalletFragment extends Fragment {
 
 
                         giftArrayList = new ArrayList<>();
+                        Log.d("TAG", "DocumentSnapshot data: " + 1);
                         giftAdapter = new GiftAdapter(getContext(), giftArrayList, new UpdateCurrentCoins() {
                             @Override
                             public void updateCoins(long coins) {
                                 binding.currentCoins.setText(String.valueOf(coins));
+                                Log.d("TAG", "DocumentSnapshot data: " + 2);
 
                             }
                         });
                         binding.recyclerviewGift.setAdapter(giftAdapter);
+                        Log.d("TAG", "DocumentSnapshot data: " + 3);
                         binding.recyclerviewGift.setLayoutManager(new LinearLayoutManager(getContext()));
                     }
                 });

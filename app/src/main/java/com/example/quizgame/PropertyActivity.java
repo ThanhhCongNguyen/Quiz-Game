@@ -3,55 +3,54 @@ package com.example.quizgame;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.quizgame.databinding.ActivityHistoryBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.okhttp.internal.DiskLruCache;
 
 import java.util.ArrayList;
 
-public class HistoryActivity extends AppCompatActivity {
-    ActivityHistoryBinding binding;
-    ArrayList<History> histories;
-    HistoryAdapter historyAdapter;
+public class PropertyActivity extends AppCompatActivity {
+
+    ArrayList<Gift> giftArrayList;
+    PropertyAdapter propertyAdapter;
     FirebaseFirestore database;
+    RecyclerView recyclerViewProperty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = ActivityHistoryBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.historyToolbar);
+        setContentView(R.layout.activity_property);
 
         database = FirebaseFirestore.getInstance();
+        giftArrayList = new ArrayList<>();
+        recyclerViewProperty = findViewById(R.id.recyclerview_property);
 
-        histories = new ArrayList<>();
-        historyAdapter = new HistoryAdapter(this, histories);
-
-        database.collection("users")
+        database
+                .collection("users")
                 .document(FirebaseAuth.getInstance().getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if(task.isSuccessful()){
-                            DocumentSnapshot snapshot = task.getResult();
-                            if(snapshot.exists()){
-                                User user = snapshot.toObject(User.class);
-                                histories.addAll(user.getHistories());
-                                binding.recyclerviewLslb.setLayoutManager(new LinearLayoutManager(HistoryActivity.this));
-                                binding.recyclerviewLslb.setAdapter(historyAdapter);
-
+                            DocumentSnapshot documentSnapshot = task.getResult();
+                            if(documentSnapshot.exists()){
+                                User user = documentSnapshot.toObject(User.class);
+                                Log.d("TAG", "Data "+ user.getGifts().toString());
+                                giftArrayList.addAll(user.getGifts());
+                               // propertyAdapter.notifyDataSetChanged();
+                                propertyAdapter = new PropertyAdapter(giftArrayList, PropertyActivity.this);
+                                recyclerViewProperty.setAdapter(propertyAdapter);
+                                recyclerViewProperty.setLayoutManager(new LinearLayoutManager(PropertyActivity.this));
                             }else {
                                 Log.d("TAG", "No such document", task.getException());
                             }

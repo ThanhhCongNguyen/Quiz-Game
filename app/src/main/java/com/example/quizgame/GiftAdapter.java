@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +51,7 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
         this.context = context;
         this.giftArrayList = giftArrayList;
         this.updateCurrentCoins = updateCurrentCoins;
+        Log.d("TAG", "DocumentSnapshot data: " + 4);
     }
 
     @NonNull
@@ -80,17 +83,19 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                list = (ArrayList<String>) document.getData().get("gifts");
-                                Log.d("TAG", "DocumentSnapshot data: " + list);
-                                Log.d("TAG", "Gift data: " + gift.getGiftName());
-                                if (list.contains(gift.getGiftName())) {
+                                User user = document.toObject(User.class);
 
-                                    holder.selectText.setText(R.string.locked);
-                                    holder.selectText.setEnabled(false);
-                                }else {
-
-                                    holder.selectText.setText(R.string.select);
-                                    holder.selectText.setEnabled(true);
+                                if(!user.getGifts().isEmpty()){
+                                    for(Gift gift1 : user.getGifts()){
+                                        list.add(gift1.getGiftName());
+                                    }
+                                    if (list.contains(gift.getGiftName())) {
+                                        holder.selectText.setVisibility(View.GONE);
+                                        holder.openText.setVisibility(View.VISIBLE);
+                                    }else {
+                                        holder.selectText.setVisibility(View.VISIBLE);
+                                        holder.openText.setVisibility(View.GONE);
+                                    }
                                 }
                             } else {
                                 Log.d("TAG", "No such document");
@@ -105,8 +110,6 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
         holder.selectText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Log.d("TAG", String.valueOf(coins));
-//                Log.d("TAG", String.valueOf(gift.getGiftPrice()));
                 new AlertDialog.Builder(context)
                         .setTitle("Đổi quà")
                         .setMessage("Bạn có muốn đổi quà này không?")
@@ -126,7 +129,8 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
                                                 if(coins >= gift.getGiftPrice()){
                                                     Map<String, Object> map = new HashMap<>();
                                                     map.put("coins", coins - gift.getGiftPrice());
-                                                    map.put("gifts", FieldValue.arrayUnion(gift.getGiftName()));
+                                                    map.put("gifts", FieldValue.arrayUnion(gift));
+                                                    //map.put("gifts", Arrays.asList(gift));
 
                                                     database.collection("users")
                                                             .document(FirebaseAuth.getInstance().getUid())
@@ -138,9 +142,10 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
 
                                                                     // Thong bao thanh cong
                                                                     Toast.makeText(context, "Successfully", Toast.LENGTH_LONG).show();
-                                                                    holder.selectText.setText(R.string.locked);
-                                                                    holder.selectText.setEnabled(false);
+                                                                    holder.selectText.setVisibility(View.GONE);
+                                                                    holder.openText.setVisibility(View.VISIBLE);
                                                                     updateCurrentCoins.updateCoins(coins - gift.getGiftPrice());
+                                                                    Log.d("TAG", "DocumentSnapshot data: " + 5);
 
                                                                 }
                                                             })
@@ -162,6 +167,16 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
                         .show();
             }
         });
+
+        holder.openText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(gift.getLink()));
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -170,15 +185,16 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
     }
 
     class GiftViewHolder extends RecyclerView.ViewHolder{
-        TextView nameGiftText, priceGiftText, selectText;
+        TextView nameGiftText, priceGiftText, selectText, openText;
         ImageView imageGift;
         public GiftViewHolder(@NonNull View itemView) {
             super(itemView);
 
             nameGiftText = itemView.findViewById(R.id.name_gift_text);
             priceGiftText = itemView.findViewById(R.id.price_gift_text);
-            selectText = itemView.findViewById(R.id.select_text);
+            selectText = itemView.findViewById(R.id.purchase_text);
             imageGift = itemView.findViewById(R.id.image_gift);
+            openText = itemView.findViewById(R.id.open_text);
 
         }
     }
