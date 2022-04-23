@@ -47,12 +47,12 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.LSLBView
             holder.binding.imageViewLslb.setImageResource(R.drawable.science);
         }else if(history.getCategoryName().equals("Maths")){
             holder.binding.imageViewLslb.setImageResource(R.drawable.mathematics);
-        }else if(history.getCategoryName().equals("English")){
+        }else if(history.getCategoryName().equals("Language")){
             holder.binding.imageViewLslb.setImageResource(R.drawable.language);
-        }else if(history.getCategoryName().equals("Puzzle")){
-            holder.binding.imageViewLslb.setImageResource(R.drawable.puzzle);
-        }else if(history.getCategoryName().equals("Drama")){
-            holder.binding.imageViewLslb.setImageResource(R.drawable.drama);
+        }else if(history.getCategoryName().equals("Animals")){
+            holder.binding.imageViewLslb.setImageResource(R.drawable.bee);
+        }else if(history.getCategoryName().equals("Sports")){
+            holder.binding.imageViewLslb.setImageResource(R.drawable.footballplayers);
         }
 
         float value = (float) history.getCorrectAnswer() / history.getTotal();

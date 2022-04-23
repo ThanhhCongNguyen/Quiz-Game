@@ -65,4 +65,14 @@
         app:layout_constraintStart_toStartOf="@+id/spinwheel_image"
         app:srcCompat="@drawable/spinpin" />
 
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/spinitwinit" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

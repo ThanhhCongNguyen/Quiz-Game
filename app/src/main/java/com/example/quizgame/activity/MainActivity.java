@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.show();
         }else {
             startActivity(new Intent(MainActivity.this, HistoryActivity.class));
-            finish();
         }
         return super.onOptionsItemSelected(item);
     }

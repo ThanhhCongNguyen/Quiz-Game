@@ -145,7 +145,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     void checkAnswer(TextView textView){
-        String selectedAnswer = textView.getText().toString();
+        String selectedAnswer = textView.getText().toString().trim();
         if(selectedAnswer.equals(question.getAnswer())){
             correctAnswer++;
             textView.setBackground(getResources().getDrawable(R.drawable.option_right));
@@ -168,25 +168,25 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     void showAnswer(){
-        if(question.getAnswer().equals(binding.option1.getText().toString())){
+        if(question.getAnswer().equals(binding.option1.getText().toString().trim())){
             binding.option1.setBackground(getResources().getDrawable(R.drawable.option_right));
             binding.option1.setEnabled(false);
             binding.option2.setEnabled(false);
             binding.option3.setEnabled(false);
             binding.option4.setEnabled(false);
-        }else if(question.getAnswer().equals(binding.option2.getText().toString())){
+        }else if(question.getAnswer().equals(binding.option2.getText().toString().trim())){
             binding.option2.setBackground(getResources().getDrawable(R.drawable.option_right));
             binding.option1.setEnabled(false);
             binding.option2.setEnabled(false);
             binding.option3.setEnabled(false);
             binding.option4.setEnabled(false);
-        }else if(question.getAnswer().equals(binding.option3.getText().toString())){
+        }else if(question.getAnswer().equals(binding.option3.getText().toString().trim())){
             binding.option3.setBackground(getResources().getDrawable(R.drawable.option_right));
             binding.option1.setEnabled(false);
             binding.option2.setEnabled(false);
             binding.option3.setEnabled(false);
             binding.option4.setEnabled(false);
-        }else if(question.getAnswer().equals(binding.option4.getText().toString())){
+        }else if(question.getAnswer().equals(binding.option4.getText().toString().trim())){
             binding.option4.setBackground(getResources().getDrawable(R.drawable.option_right));
             binding.option1.setEnabled(false);
             binding.option2.setEnabled(false);

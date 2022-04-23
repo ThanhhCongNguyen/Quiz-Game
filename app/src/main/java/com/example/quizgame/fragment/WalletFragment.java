@@ -81,7 +81,10 @@ public class WalletFragment extends Fragment {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for(DocumentSnapshot snapshot : queryDocumentSnapshots){
                             Gift gift = snapshot.toObject(Gift.class);
-                            giftArrayList.add(gift);
+                            if(gift != null){
+                                giftArrayList.add(gift);
+                            }
+
                         }
                         giftAdapter.notifyDataSetChanged();
 

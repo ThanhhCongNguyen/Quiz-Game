@@ -43,7 +43,7 @@ public class LuckyNumberActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         binding.luckyBox.setVisibility(View.GONE);
-                        binding.congratsText.setText("Bạn nhận được "+ luckyNumber+ " coins");
+                        binding.congratsText.setText(String.valueOf(luckyNumber) + " coins");
                         binding.congratsText.setVisibility(View.VISIBLE);
                         updateCoins(luckyNumber);
 
