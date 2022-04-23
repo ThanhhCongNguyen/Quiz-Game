@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".fragment.ProfileFragment">
 
 
     <View
@@ -29,7 +29,7 @@
         android:background="@drawable/profile_background"
         android:orientation="vertical"
         android:weightSum="5"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/logout_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -152,13 +152,14 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1.5"
-                android:text="1/1000"
+                android:text="1000"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/gift_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="5dp"
@@ -207,6 +208,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/history_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="5dp"
@@ -262,14 +264,14 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/logout_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="@color/colorPurple"
-        android:text="Update password"
+        android:text="Log out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

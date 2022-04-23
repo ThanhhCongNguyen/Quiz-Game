@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/constraintLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -36,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Mai Linh"
+        android:text="Thanh"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -56,17 +57,4 @@
         app:layout_constraintBottom_toBottomOf="@+id/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/name" />
-
-    <RadioButton
-        android:id="@+id/userPlace"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:enabled="false"
-        android:buttonTint="@color/color_green"
-        android:visibility="gone"
-        android:checked="true"
-        app:layout_constraintBottom_toBottomOf="@+id/coins"
-        app:layout_constraintEnd_toStartOf="@+id/coins"
-        app:layout_constraintTop_toTopOf="@+id/coins" />
 </androidx.constraintlayout.widget.ConstraintLayout>

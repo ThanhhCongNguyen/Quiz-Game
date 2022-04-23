@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <View
         android:id="@+id/view2"
@@ -113,23 +113,23 @@
         android:text="Spin Wheel"
         android:textColor="@color/color_white"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintEnd_toStartOf="@+id/lucky_number"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/lucky_number"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/login_btn"
-        android:drawableLeft="@drawable/share"
+        android:drawableLeft="@drawable/ic_star"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:paddingLeft="15dp"
-        android:text="Invite Friends"
+        android:text="Lucky Number"
         android:textColor="@color/color_white"
         app:drawableTint="@color/color_white"
         app:layout_constraintBottom_toBottomOf="@+id/spinwheel"

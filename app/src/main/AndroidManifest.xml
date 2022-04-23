@@ -10,13 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizGame">
         <activity
-            android:name=".PropertyActivity"
+            android:name=".activity.SpinWheelActivity"
             android:exported="false" />
         <activity
-            android:name=".HistoryActivity"
+            android:name=".activity.LuckyNumberActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".activity.PropertyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,19 +31,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ResultActivity"
+            android:name=".activity.ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".QuizActivity"
+            android:name=".activity.QuizActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".activity.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="false" />
 
         <meta-data
