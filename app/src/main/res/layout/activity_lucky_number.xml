@@ -17,16 +17,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/coin_treasure" />
 
+
     <ImageView
         android:id="@+id/lucky_box"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/coins"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageview30"
         app:srcCompat="@drawable/lucky_box" />
-
 
     <TextView
         android:id="@+id/congrats_text"
@@ -54,30 +55,32 @@
         app:srcCompat="@drawable/lk_box" />
 
     <View
-        android:id="@+id/view10"
+        android:id="@+id/introduction_view"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/round_box_purple"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageview30" />
+        app:layout_constraintTop_toBottomOf="@+id/lucky_box" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/introduction_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="50 = 1 turn"
-        android:textColor="@color/color_white"
-        android:textStyle="bold"
-        android:textSize="20sp"
         android:drawableStart="@drawable/coins"
         android:drawablePadding="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view10"
-        app:layout_constraintEnd_toEndOf="@+id/view10"
-        app:layout_constraintStart_toStartOf="@+id/view10"
-        app:layout_constraintTop_toBottomOf="@+id/imageview30" />
+        android:text="50 = 1 turn"
+        android:textColor="@color/color_white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/introduction_view"
+        app:layout_constraintEnd_toEndOf="@+id/introduction_view"
+        app:layout_constraintStart_toStartOf="@+id/introduction_view"
+        app:layout_constraintTop_toTopOf="@+id/introduction_view" />
 
     <Button
         android:id="@+id/continue_button"

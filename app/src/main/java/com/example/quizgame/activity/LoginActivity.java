@@ -108,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                                     dialog.dismiss();
                                 }
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                finish();
                             } else {
                                 dialog.dismiss();
                                 Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_LONG).show();

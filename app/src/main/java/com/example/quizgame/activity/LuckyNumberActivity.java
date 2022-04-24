@@ -53,6 +53,8 @@ public class LuckyNumberActivity extends AppCompatActivity {
                 binding.luckyBox.setVisibility(View.VISIBLE);
                 binding.congratsText.setVisibility(View.GONE);
                 binding.continueButton.setVisibility(View.GONE);
+                binding.introductionTextview.setVisibility(View.VISIBLE);
+                binding.introductionView.setVisibility(View.VISIBLE);
                 onClickedImage();
             }
         });
@@ -72,6 +74,8 @@ public class LuckyNumberActivity extends AppCompatActivity {
                         binding.congratsText.setText(String.valueOf(luckyNumber) + " coins");
                         binding.congratsText.setVisibility(View.VISIBLE);
                         binding.continueButton.setVisibility(View.VISIBLE);
+                        binding.introductionTextview.setVisibility(View.GONE);
+                        binding.introductionView.setVisibility(View.GONE);
                         onClickedContinue();
                         updateCoins(luckyNumber);
 
