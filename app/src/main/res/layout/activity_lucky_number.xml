@@ -21,7 +21,7 @@
         android:id="@+id/lucky_box"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/coins"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,35 +32,75 @@
         android:id="@+id/congrats_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:drawableStart="@drawable/coins"
+        android:drawablePadding="8dp"
         android:text="Chúc mừng"
         android:textColor="@color/yellow"
         android:textSize="34sp"
         android:textStyle="bold"
         android:visibility="gone"
-        android:drawableStart="@drawable/coins"
-        android:drawablePadding="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/coins"
+        app:layout_constraintBottom_toTopOf="@+id/continue_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageview30"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view10" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_lucky_act"
+        app:srcCompat="@drawable/lk_box" />
 
     <View
         android:id="@+id/view10"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/round_box_purple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageview30" />
+
+    <TextView
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:background="@drawable/background_lucky_act"
+        android:layout_height="wrap_content"
+        android:text="50 = 1 turn"
+        android:textColor="@color/color_white"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:drawableStart="@drawable/coins"
+        android:drawablePadding="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view10"
+        app:layout_constraintEnd_toEndOf="@+id/view10"
+        app:layout_constraintStart_toStartOf="@+id/view10"
+        app:layout_constraintTop_toBottomOf="@+id/imageview30" />
+
+    <Button
+        android:id="@+id/continue_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/login_btn"
+        android:text="Continue"
+        app:backgroundTint="@null"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/coins"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_lucky_act"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/lightPurple"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ToolbarColoredBackArrow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView25"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/view10"
-        app:layout_constraintTop_toTopOf="@+id/view10"
-        app:srcCompat="@drawable/lk_box" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

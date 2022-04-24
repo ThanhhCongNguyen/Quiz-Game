@@ -11,10 +11,14 @@
         android:theme="@style/Theme.QuizGame">
         <activity
             android:name=".activity.SpinWheelActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/spin_wheel"
+            android:parentActivityName=".activity.MainActivity"/>
         <activity
             android:name=".activity.LuckyNumberActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/lucky_box"
+            android:parentActivityName=".activity.MainActivity"/>
         <activity
             android:name=".activity.PropertyActivity"
             android:exported="false" />

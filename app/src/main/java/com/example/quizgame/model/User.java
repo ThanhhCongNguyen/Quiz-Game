@@ -20,7 +20,7 @@ public class User {
         this.email = email;
     }
 
-    public User(String name, int coins) {
+    public User(String name, long coins) {
         this.name = name;
         this.coins = coins;
     }
@@ -40,7 +40,8 @@ public class User {
         this.coins = coins;
     }
 
-    public User(String name, String email, String pass, long coins, ArrayList<Gift> gifts, ArrayList<History> histories) {
+    public User(String id, String name, String email, String pass, long coins, ArrayList<Gift> gifts, ArrayList<History> histories) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.pass = pass;
@@ -77,7 +78,7 @@ public class User {
         return coins;
     }
 
-    public void setCoins(int coins) {
+    public void setCoins(long coins) {
         this.coins = coins;
     }
 

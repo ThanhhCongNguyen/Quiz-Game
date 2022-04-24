@@ -58,6 +58,7 @@ public class LeaderboardsFragment extends Fragment {
                                 String name = (String)documentSnapshot.getData().get("name");
                                 long coins = (long)documentSnapshot.getData().get("coins");
                                 String id = documentSnapshot.getId();
+                                Log.d("TAG", id);
                                 User user = new User(id, name, coins);
                                 users.add(user);
                             }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.quizgame.databinding.ActivityResultBinding;
+import com.example.quizgame.fragment.HomeFragment;
 import com.example.quizgame.model.History;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
@@ -71,7 +72,9 @@ public class ResultActivity extends AppCompatActivity {
                                 database.collection("users")
                                         .document(FirebaseAuth.getInstance().getUid())
                                         .update(map);
-                                Toast.makeText(ResultActivity.this, "Save Successful", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ResultActivity.this, "Save Successfully", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(ResultActivity.this, MainActivity.class));
+                                finish();
                             }
                         })
                         .setNegativeButton("No", null)

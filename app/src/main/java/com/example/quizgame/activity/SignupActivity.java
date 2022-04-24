@@ -63,9 +63,6 @@ public class SignupActivity extends AppCompatActivity {
                 gifts = new ArrayList<>();
 
 
-
-                final User user = new User(name, email, pass, coins, gifts, histories);
-
                 if (isValid()) {
                     dialog.show();
 
@@ -73,9 +70,11 @@ public class SignupActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                String id = task.getResult().getUser().getUid();
+                                final User user = new User(id, name, email, pass, coins, gifts, histories);
                                 database
                                         .collection("users")
-                                        .document(task.getResult().getUser().getUid())
+                                        .document(id)
                                         .set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {

@@ -2,6 +2,7 @@ package com.example.quizgame.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -9,13 +10,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.quizgame.action.UpdateCurrentCoins;
 import com.example.quizgame.adapter.GiftAdapter;
 import com.example.quizgame.databinding.FragmentWalletBinding;
 import com.example.quizgame.model.Gift;
 import com.example.quizgame.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -59,37 +63,57 @@ public class WalletFragment extends Fragment {
                         long coins = user.getCoins();
                         binding.currentCoins.setText(String.valueOf(coins));
 
-
-                        giftArrayList = new ArrayList<>();
-                        giftAdapter = new GiftAdapter(getContext(), giftArrayList, new UpdateCurrentCoins() {
-                            @Override
-                            public void updateCoins(long coins) {
-                                binding.currentCoins.setText(String.valueOf(coins));
-
-                            }
-                        });
-                        binding.recyclerviewGift.setAdapter(giftAdapter);
-                        binding.recyclerviewGift.setLayoutManager(new LinearLayoutManager(getContext()));
                     }
                 });
 
+        giftArrayList = new ArrayList<>();
+        giftAdapter = new GiftAdapter(getContext(), giftArrayList, new UpdateCurrentCoins() {
+            @Override
+            public void updateCoins(long coins) {
+                binding.currentCoins.setText(String.valueOf(coins));
+
+            }
+        });
 
         database.collection("Gifts")
                 .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for(DocumentSnapshot snapshot : queryDocumentSnapshots){
-                            Gift gift = snapshot.toObject(Gift.class);
-                            if(gift != null){
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(DocumentSnapshot snapshot : task.getResult()){
+                                Gift gift = snapshot.toObject(Gift.class);
                                 giftArrayList.add(gift);
                             }
-
+                            giftAdapter.notifyDataSetChanged();
+                        }else {
+                            Log.d("TAG", task.getException().toString());
+                            Toast.makeText(getContext(), task.getException().toString(), Toast.LENGTH_LONG).show();
                         }
-                        giftAdapter.notifyDataSetChanged();
-
                     }
                 });
+
+        binding.recyclerviewGift.setAdapter(giftAdapter);
+        binding.recyclerviewGift.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+//        database.collection("Gifts")
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        for(DocumentSnapshot snapshot : queryDocumentSnapshots){
+//                            Gift gift = snapshot.toObject(Gift.class);
+//                            if(gift != null){
+//                                giftArrayList.add(gift);
+//                            }
+//
+//                        }
+//                        giftAdapter.notifyDataSetChanged();
+//
+//                    }
+//                });
+
 
 
 

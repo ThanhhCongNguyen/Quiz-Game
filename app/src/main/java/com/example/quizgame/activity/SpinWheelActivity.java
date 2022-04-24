@@ -16,6 +16,7 @@ import com.example.quizgame.databinding.ActivitySpinWheelBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -31,13 +32,27 @@ public class SpinWheelActivity extends AppCompatActivity {
     private static final Random random = new Random();
     private int degree = 0;
     private boolean isSpinning = false;
+    FirebaseFirestore database;
+    private long coinsUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySpinWheelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setSupportActionBar(binding.toolbarSpinAct);
+        binding.toolbarSpinAct.setTitleTextColor(getResources().getColor(R.color.color_white));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        database = FirebaseFirestore.getInstance();
         getDegreeForSector();
+        getCoinsUser();
+
+
+
+    }
+
+    private void onClickedButton(){
         binding.spinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,8 +62,6 @@ public class SpinWheelActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     private void spin() {
@@ -89,10 +102,10 @@ public class SpinWheelActivity extends AppCompatActivity {
     }
 
     private void updateCoins(int coins) {
-        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        int newCoins = coins - 50;
         database.collection("users")
                 .document(FirebaseAuth.getInstance().getUid())
-                .update("coins", FieldValue.increment(coins))
+                .update("coins", FieldValue.increment(newCoins))
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -112,5 +125,27 @@ public class SpinWheelActivity extends AppCompatActivity {
           //  Log.d("TAG", String.valueOf(sectorDegrees[i]));
         }
 
+    }
+
+    private void getCoinsUser(){
+        database.collection("users")
+                .document(FirebaseAuth.getInstance().getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            coinsUser = (long)task.getResult().getData().get("coins");
+                            if(coinsUser >= 50){
+                                onClickedButton();
+                            }else {
+                                Toast.makeText(SpinWheelActivity.this, "Bạn không đủ 50 coins", Toast.LENGTH_LONG).show();
+                            }
+                        }else {
+                            Log.d("TAG", task.getException().toString());
+                            Toast.makeText(SpinWheelActivity.this, task.getException().toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
     }
 }

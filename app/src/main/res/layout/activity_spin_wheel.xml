@@ -11,7 +11,7 @@
         android:id="@+id/imageView5"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/spin_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -32,7 +32,6 @@
         android:id="@+id/spin_button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:background="@drawable/login_btn"
         android:text="Spin"
         app:backgroundTint="@null"
@@ -65,14 +64,55 @@
         app:layout_constraintStart_toStartOf="@+id/spinwheel_image"
         app:srcCompat="@drawable/spinpin" />
 
-    <ImageView
-        android:id="@+id/imageView19"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="32dp"
+    <View
+        android:id="@+id/view12"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/round_box_orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageview30" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/coins"
+        android:drawablePadding="5dp"
+        android:text="50 = 1 turn"
+        android:textColor="@color/color_white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view12"
+        app:layout_constraintEnd_toEndOf="@+id/view12"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/view12"
+        app:layout_constraintTop_toTopOf="@+id/view12" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_spin_act"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/darkOrange"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ToolbarColoredBackArrow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageview30"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_spin_act"
         app:srcCompat="@drawable/spinitwinit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -119,7 +119,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     void resetTimer(){
-        timer = new CountDownTimer(20000,1000) {
+        timer = new CountDownTimer(10000,1000) {
             @Override
             public void onTick(long l) {
                 binding.txtTime.setText(String.valueOf(l/1000));
@@ -131,7 +131,9 @@ public class QuizActivity extends AppCompatActivity {
                     reset();
                     index++;
                     setNextQuestion();
-                }else {
+                }
+                else {
+
                     Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
                     intent.putExtra("catId", catId);
                     intent.putExtra("categoryName", categoryName);
@@ -139,6 +141,7 @@ public class QuizActivity extends AppCompatActivity {
                     intent.putExtra("total", questions.size());
                     startActivity(intent);
                     finish();
+                    timer.onFinish();
                 }
             }
         };
