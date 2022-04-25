@@ -36,7 +36,14 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(auth.getCurrentUser() != null && rememberPass == true){
+//                if(auth.getCurrentUser() != null && rememberPass == true){
+//                    startActivity(new Intent(SplashScreen.this, MainActivity.class));
+//                    finish();
+//                }else {
+//                    startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+//                    finish();
+//                }
+                if(rememberPass == true){
                     startActivity(new Intent(SplashScreen.this, MainActivity.class));
                     finish();
                 }else {

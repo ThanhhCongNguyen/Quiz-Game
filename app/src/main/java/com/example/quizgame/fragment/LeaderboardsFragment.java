@@ -46,7 +46,7 @@ public class LeaderboardsFragment extends Fragment {
 
         ArrayList<User> users = new ArrayList<>();
 
-       FirebaseFirestore database = FirebaseFirestore.getInstance();
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
         database.collection("users")
                 .orderBy("coins", Query.Direction.DESCENDING)
                 .get()

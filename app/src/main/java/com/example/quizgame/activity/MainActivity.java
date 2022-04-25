@@ -27,7 +27,6 @@ import me.ibrahimsn.lib.OnItemSelectedListener;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 

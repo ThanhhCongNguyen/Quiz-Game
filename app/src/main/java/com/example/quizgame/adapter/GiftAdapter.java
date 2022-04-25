@@ -69,6 +69,7 @@ public class GiftAdapter extends RecyclerView.Adapter<GiftAdapter.GiftViewHolder
                 .with(context)
                 .load(gift.getGiftImage())
                 .into(holder.binding.imageGift);
+
         database.collection("users")
                 .document(FirebaseAuth.getInstance().getUid())
                 .addSnapshotListener(new EventListener<DocumentSnapshot>() {
