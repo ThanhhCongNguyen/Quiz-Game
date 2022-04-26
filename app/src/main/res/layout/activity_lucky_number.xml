@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/coins"
         android:drawablePadding="5dp"
-        android:text="50 = 1 turn"
+        android:text="50 = 1 lượt"
         android:textColor="@color/color_white"
         android:textSize="20sp"
         android:textStyle="bold"

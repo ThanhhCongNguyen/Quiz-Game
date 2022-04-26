@@ -40,8 +40,7 @@ public class User {
         this.coins = coins;
     }
 
-    public User(String id, String name, String email, String pass, long coins, ArrayList<Gift> gifts, ArrayList<History> histories) {
-        this.id = id;
+    public User(String name, String email, String pass, long coins, ArrayList<Gift> gifts, ArrayList<History> histories) {
         this.name = name;
         this.email = email;
         this.pass = pass;

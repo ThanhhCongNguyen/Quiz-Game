@@ -71,13 +71,7 @@ public class LeaderboardsFragment extends Fragment {
 
 
 
-
-                leaderBoardsAdapter = new LeaderBoardsAdapter(getContext(), users, new UpdatePositionLeaderBoard() {
-                    @Override
-                    public void updatePosition(String email) {
-
-                    }
-                });
+                leaderBoardsAdapter = new LeaderBoardsAdapter(getContext(), users);
 
                 binding.rycLeaderboard.setAdapter(leaderBoardsAdapter);
                 binding.rycLeaderboard.setLayoutManager(new LinearLayoutManager(getContext()));

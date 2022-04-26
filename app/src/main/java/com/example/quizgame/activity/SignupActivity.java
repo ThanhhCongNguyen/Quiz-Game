@@ -61,6 +61,7 @@ public class SignupActivity extends AppCompatActivity {
 
                 histories = new ArrayList<>();
                 gifts = new ArrayList<>();
+                final User user = new User(name, email, pass, coins, gifts, histories);
 
 
                 if (isValid()) {
@@ -70,11 +71,11 @@ public class SignupActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                String id = task.getResult().getUser().getUid();
-                                final User user = new User(id, name, email, pass, coins, gifts, histories);
+//                                String id = task.getResult().getUser().getUid();
+//                                final User user = new User(id, name, email, pass, coins, gifts, histories);
                                 database
                                         .collection("users")
-                                        .document(id)
+                                        .document(task.getResult().getUser().getUid())
                                         .set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {

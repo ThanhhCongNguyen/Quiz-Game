@@ -3,6 +3,7 @@ package com.example.quizgame.adapter;
 //import static com.example.quizgame.WalletFragment.Email;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,13 +26,11 @@ public class LeaderBoardsAdapter extends RecyclerView.Adapter<LeaderBoardsAdapte
     ArrayList<User> users;
     // ProgressDialog progressDialog;
     String email;
-    UpdatePositionLeaderBoard updatePositionLeaderBoard;
 
 
-    public LeaderBoardsAdapter(Context context, ArrayList<User> users, UpdatePositionLeaderBoard updatePositionLeaderBoard) {
+    public LeaderBoardsAdapter(Context context, ArrayList<User> users) {
         this.context = context;
         this.users = users;
-        this.updatePositionLeaderBoard = updatePositionLeaderBoard;
     }
 
     @NonNull
@@ -50,6 +49,7 @@ public class LeaderBoardsAdapter extends RecyclerView.Adapter<LeaderBoardsAdapte
         holder.binding.coins.setText(String.valueOf(user.getCoins()));
 
         if(user.getId().equals(FirebaseAuth.getInstance().getUid())){
+            Log.d("TAG", FirebaseAuth.getInstance().getUid());
             holder.binding.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.darkGreen));
         }
 
