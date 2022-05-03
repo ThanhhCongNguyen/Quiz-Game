@@ -11,6 +11,11 @@
  - ...
 ##  Executing program
  - Bạn có thể xem hướng dẫn tại đây: https://drive.google.com/file/d/1E1kNMgUlIU4B20CJx9AhdTilDpQ34ge0/view?usp=sharing
+ - ![image](https://user-images.githubusercontent.com/92249336/166400251-69d333bc-d69b-4d46-85ff-bcee2830b7eb.png)
+ - ![image](https://user-images.githubusercontent.com/92249336/166400208-39448d61-4b53-45e8-92bb-b4b770a09f0a.png)
+ - ![image](https://user-images.githubusercontent.com/92249336/166400265-52619aba-fd62-47fe-8b67-5849d001a9f2.png)
+ - ![image](https://user-images.githubusercontent.com/92249336/166400286-d340c1dd-bba9-4fd7-9228-495dba03fba4.png)
+ - ![image](https://user-images.githubusercontent.com/92249336/166400307-a1723778-fe41-4084-877a-acffa3f9fffa.png)
 #  Authors
  - Nguyễn Công Thành
  - Nguyễn Phương Nam
